@@ -1,0 +1,153 @@
+<!-- AI Assistant Floating Button -->
+<button id="ai-chat-toggle" "tok-kw">class="fixed bottom-6 right-6 z-50 bg-blue-600 hover:bg-blue-700 text-white p-4 rounded-full shadow-lg transition-transform transform hover:scale-110 focus:outline-none">
+    <!-- SVG Icon "tok-kw">for Chat -->
+    <svg xmlns="http://www.w3.org/2000/svg" "tok-kw">class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
+    </svg>
+</button>
+
+<!-- AI Chat Window -->
+<div id="ai-chat-window" "tok-kw">class="fixed bottom-24 right-6 z-50 w-80 md:w-96 bg-white rounded-xl shadow-2xl border border-gray-200 hidden flex-col overflow-hidden transition-all duration-300 ease-"tok-kw">in-out transform origin-bottom-right">
+    
+    <!-- Header -->
+    <div "tok-kw">class="bg-gradient-to-r "tok-kw">from-blue-600 to-indigo-700 p-4 flex justify-between items-center text-white">
+        <div "tok-kw">class="flex items-center gap-2">
+            <div "tok-kw">class="w-3 h-3 bg-green-400 rounded-full animate-pulse"></div>
+            <h3 "tok-kw">class="font-bold text-sm">GLA AI Admission Assistant</h3>
+        </div>
+        <button id="ai-chat-close" "tok-kw">class="text-white hover:text-gray-200 focus:outline-none">
+            <svg xmlns="http://www.w3.org/2000/svg" "tok-kw">class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" />
+            </svg>
+        </button>
+    </div>
+
+    <!-- Messages Area -->
+    <div id="ai-chat-messages" "tok-kw">class="h-80 overflow-y-auto p-4 bg-gray-50 space-y-3">
+        <!-- Welcome Message -->
+        <div "tok-kw">class="flex items-start">
+            <div "tok-kw">class="bg-blue-100 text-blue-800 p-3 rounded-lg rounded-tl-none text-sm max-w-[85%] shadow-sm">
+                Hello! I&#039;m your GLA AI Assistant. Ask me about fees, courses, placements, "tok-kw">or hostel facilities! 🎓
+            </div>
+        </div>
+    </div>
+
+    <!-- Input Area -->
+    <div "tok-kw">class="p-3 bg-white border-t border-gray-200">
+        <form id="ai-chat-form" "tok-kw">class="flex gap-2">
+            <input "tok-kw">type="text" id="ai-chat-input" placeholder="Type your question..." "tok-kw">class="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm">
+            <button "tok-kw">type="submit" "tok-kw">class="bg-blue-600 hover:bg-blue-700 text-white px-3 py-2 rounded-lg transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" "tok-kw">class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                    <path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l8-2.665 4 1.333a1 1 0 001.169-1.409l-7-14z" />
+                </svg>
+            </button>
+        </form>
+    </div>
+</div>
+document.addEventListener(&#039;DOMContentLoaded&#039;, () => {
+    "tok-kw">const chatToggle = document.getElementById(&#039;ai-chat-toggle&#039;);
+    "tok-kw">const chatWindow = document.getElementById(&#039;ai-chat-window&#039;);
+    "tok-kw">const chatClose = document.getElementById(&#039;ai-chat-close&#039;);
+    "tok-kw">const chatForm = document.getElementById(&#039;ai-chat-form&#039;);
+    "tok-kw">const chatInput = document.getElementById(&#039;ai-chat-input&#039;);
+    "tok-kw">const messagesContainer = document.getElementById(&#039;ai-chat-messages&#039;);
+
+    // 1. Toggle Chat Window
+    chatToggle.addEventListener(&#039;click&#039;, () => {
+        chatWindow.classList.toggle(&#039;hidden&#039;);
+        chatWindow.classList.toggle(&#039;flex&#039;);
+        "tok-kw">if (!chatWindow.classList.contains(&#039;hidden&#039;)) {
+            chatInput.focus();
+        }
+    });
+
+    chatClose.addEventListener(&#039;click&#039;, () => {
+        chatWindow.classList.add(&#039;hidden&#039;);
+        chatWindow.classList.remove(&#039;flex&#039;);
+    });
+
+    // 2. AI Response Logic(Simulated Brain)
+    "tok-kw">const getAIResponse = (input) => {
+        "tok-kw">const lowerInput = input.toLowerCase();
+
+        // Keywords "tok-kw">and Responses Database
+        "tok-kw">if (lowerInput.includes(&#039;fees&#039;) || lowerInput.includes(&#039;cost&#039;)) {
+            "tok-kw">return "GLA University offers various programs. For B.Tech, fees "tok-kw">range approx. ₹1.5L - ₹2.5L per semester depending on the specialization. For exact details, check the &#039;Admissions&#039; page.";
+        }
+        "tok-kw">if (lowerInput.includes(&#039;b.tech&#039;) || lowerInput.includes(&#039;cse&#039;) || lowerInput.includes(&#039;engineering&#039;)) {
+            "tok-kw">return "GLA offers B.Tech "tok-kw">in CSE, AI & DS, Civil, Mechanical, "tok-kw">and more. Placements are strong, "tok-kw">with top packages up to 45 LPA. Would you like to know about eligibility?";
+        }
+        "tok-kw">if (lowerInput.includes(&#039;placement&#039;) || lowerInput.includes(&#039;job&#039;) || lowerInput.includes(&#039;"tok-kw">package&#039;)) {
+            "tok-kw">return "GLA has a dedicated Training & Placement Cell. Major recruiters include Amazon, Flipkart, TCS, "tok-kw">and Infosys. Average "tok-kw">package "tok-kw">is around 6-8 LPA.";
+        }
+        "tok-kw">if (lowerInput.includes(&#039;hostel&#039;) || lowerInput.includes(&#039;accommodation&#039;)) {
+            "tok-kw">return "GLA provides separate hostels "tok-kw">for boys "tok-kw">and girls "tok-kw">with AC/Non-AC rooms, mess facilities, "tok-kw">and Wi-Fi. Fees are approx. ₹1.2L per year.";
+        }
+        "tok-kw">if (lowerInput.includes(&#039;scholarship&#039;) || lowerInput.includes(&#039;fee waiver&#039;)) {
+            "tok-kw">return "Scholarships are available based on 12th marks, JEE/NEET scores, "tok-kw">or GLAET entrance exam ranks. Top rankers get up to 100% fee waiver.";
+        }
+        "tok-kw">if (lowerInput.includes(&#039;exam&#039;) || lowerInput.includes(&#039;entrance&#039;) || lowerInput.includes(&#039;glaet&#039;)) {
+            "tok-kw">return "GLA Entrance Test(GLAET) "tok-kw">is conducted "tok-kw">for admissions. Dates usually open "tok-kw">in March-April. Keep an eye on the official website "tok-kw">for notifications.";
+        }
+        "tok-kw">if (lowerInput.includes(&#039;location&#039;) || lowerInput.includes(&#039;address&#039;) || lowerInput.includes(&#039;reach&#039;)) {
+            "tok-kw">return "GLA University "tok-kw">is located "tok-kw">in Mathura, Uttar Pradesh. It&#039;s easily accessible by train "tok-kw">and bus "tok-kw">from Delhi/Agra.";
+        }
+        "tok-kw">if (lowerInput.includes(&#039;recommend&#039;) || lowerInput.includes(&#039;suggest&#039;) || lowerInput.includes(&#039;course&#039;)) {
+            "tok-kw">return "To recommend a course, tell me your 12th percentage "tok-kw">and interest area(e.g., &#039;I got 80% "tok-kw">and like coding&#039;). I&#039;ll suggest the best fit!";
+        }
+        "tok-kw">if (lowerInput.includes(&#039;hello&#039;) || lowerInput.includes(&#039;hi&#039;) || lowerInput.includes(&#039;hey&#039;)) {
+            "tok-kw">return "Hi there! 👋 How can I help you "tok-kw">with your admission journey at GLA University today?";
+        }
+
+        // Default Fallback
+        "tok-kw">return "I&#039;m "tok-kw">not sure about that specific detail. Please call our helpline at 1800-xxx-xxxx "tok-kw">or visit the &#039;Contact Us&#039; page "tok-kw">for further assistance.";
+    };
+
+    // 3. Handle Form Submission
+    chatForm.addEventListener(&#039;submit&#039;, (e) => {
+        e.preventDefault();
+        "tok-kw">const userMessage = chatInput.value.trim();
+        
+        "tok-kw">if (!userMessage) "tok-kw">return;
+
+        // Add User Message
+        addMessage(userMessage, &#039;user&#039;);
+        chatInput.value = &#039;&#039;;
+
+        // Simulate AI Typing Delay
+        setTimeout(() => {
+            "tok-kw">const aiReply = getAIResponse(userMessage);
+            addMessage(aiReply, &#039;ai&#039;);
+        }, 600);
+    });
+
+    // Helper: Add message to UI
+    "tok-kw">function addMessage(text, sender) {
+        "tok-kw">const div = document.createElement(&#039;div&#039;);
+        div.className = flex items-start ${sender === &#039;user&#039; ? &#039;justify-"tok-kw">end&#039; : &#039;&#039;};
+        
+        "tok-kw">const bubble = document.createElement(&#039;div&#039;);
+        bubble.className = p-3 rounded-lg text-sm max-w-[85%] shadow-sm ${
+            sender === &#039;user&#039; 
+            ? &#039;bg-blue-600 text-white rounded-tr-none&#039; 
+            : &#039;bg-white text-gray-800 border border-gray-200 rounded-tl-none&#039;
+        };
+        bubble.textContent = text;
+
+        div.appendChild(bubble);
+        messagesContainer.appendChild(div);
+        
+        // Scroll to bottom
+        messagesContainer.scrollTop = messagesContainer.scrollHeight;
+    }
+});
+"tok-kw">if (lowerInput.includes(&#039;recommend&#039;) || lowerInput.includes(&#039;suggest&#039;)) {
+    // Simple extraction logic(very basic)
+    "tok-kw">if (lowerInput.includes(&#039;80&#039;) || lowerInput.includes(&#039;90&#039;) || lowerInput.includes(&#039;100&#039;)) {
+        "tok-kw">return "Based on your high marks, I recommend B.Tech Computer Science Engineering(CSE) "tok-kw">or B.Tech AI & Data Science. These have the highest placement rates!";
+    } "tok-kw">else "tok-kw">if (lowerInput.includes(&#039;math&#039;) || lowerInput.includes(&#039;physics&#039;)) {
+        "tok-kw">return "With a strong background "tok-kw">in PCM, B.Tech Civil "tok-kw">or Mechanical Engineering might be good fits, "tok-kw">or stick to CSE "tok-kw">if you enjoy logic.";
+    } "tok-kw">else {
+        "tok-kw">return "Please tell me your 12th percentage "tok-kw">and favorite subject so I can give a better recommendation!";
+    }
+}
